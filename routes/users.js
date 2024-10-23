@@ -50,9 +50,9 @@ router.get('/:username', async (req, res) =>{
     }
 } )
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:username', async (req, res) => {
     try {
-        const deleteUser = await User.findByIdAndDelete(req.params.id)
+        const deleteUser = await User.findOneAndDelete({username:req.params.username})
 
         res.send({
             deletedUser: deleteUser,

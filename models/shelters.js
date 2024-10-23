@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import {PetSchema} from '../models/pets,js'
 const shelterSchema = new mongoose.Schema( {
 
     name: {

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import usersRouter from './routes/users.js';
 import petsRouter from './routes/pets.js'
+import shelterRouter from './routes/shelters.js'
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use(express.json()); //parse json data
 
 app.use("/users", usersRouter)
 app.use("/pets", petsRouter)
+app.use("/shelters", shelterRouter)
 
 app.get("/", (req,res)=> {
     res.send("ok")
