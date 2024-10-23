@@ -50,27 +50,28 @@ router.get('/:username', async (req, res) =>{
     }
 } )
 
-// router.delete('/:id', async (req, res) => {
-//     try {
-//         const deleteUser = await User.findByIdAndDelete(req.params.id)
+router.delete('/:id', async (req, res) => {
+    try {
+        const deleteUser = await User.findByIdAndDelete(req.params.id)
 
-//         res.send({
-//             deletedUser: deleteUser,
-//             message: 'User Deleted!'
-//         })
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
+        res.send({
+            deletedUser: deleteUser,
+            message: 'User Deleted!'
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
 
-// router.put('/:id', async (req, res) => {
-//     try {
-//         const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
-//         res.send(updateUser)
-//     } catch (error) {
-//         console.log(error);
+//update user info using username
+router.patch('/:username', async (req, res) => {
+    try {
+        const updateUser = await await User.findOneAndUpdate({username:req.params.username}, req.body, {new: true,runValidators: true})
+        res.send(updateUser)
+    } catch (error) {
+        console.log(error);
         
-//     }
-// })
+    }
+})
 
 export default router

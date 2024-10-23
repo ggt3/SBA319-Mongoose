@@ -1,25 +1,45 @@
 import mongoose from "mongoose";
 
-const petSchema = new mongoose.Schema( {
-    species:{
-        type: String,
-        required: true,
-        enum : ['DOG','CAT','COW','GOAT','PIG','FISH','HORSE', 'RABBIT', 'BIRD'],
-    },
-    name: {
-        type:String,
-        required: true,
-        minLength: 3,
-        maxLength:12,
-    },
-    color: {
-        type:String,
-        enum : ['BLUE','GREEN','YELLOW','RED']
-    },
-    owner: {
-        type:String,
-        
-    }
-})
+const petSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+    minLength: 3,
+    maxLength: 15,
+  },
+  //will either have a user associated or a shelter associated
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    default: null,
+  },
+  shelterId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Shelter",
+    default: null,
+  },
 
-export default new mongoose.model('Pet', petSchema)
+  color: {
+    type: String,
+    enum: ["BLUE", "GREEN", "YELLOW", "RED"],
+  },
+
+  species: {
+    type: String,
+    required: true,
+    enum: [
+      "DOG",
+      "CAT",
+      "COW",
+      "GOAT",
+      "PIG",
+      "FISH",
+      "HORSE",
+      "RABBIT",
+      "BIRD",
+    ],
+  },
+});
+
+export default new mongoose.model("Pet", petSchema);

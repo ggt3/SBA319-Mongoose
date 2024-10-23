@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema( {
         type:String,
         enum : ['USA','CAN', 'MEX'],
     },
-    pets: []
+    
 
 })
 
